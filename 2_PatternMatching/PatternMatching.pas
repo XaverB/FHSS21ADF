@@ -150,7 +150,11 @@ BEGIN
             Dec(i);
             Dec(j);
         END ELSE BEGIN
-            i := i + skip[s[i]]; (*+ (pLen - j) + 1*)
+            IF (pLen - j) < skip[s[i]] THEN
+                i := i + skip[s[i]]
+            ELSE 
+                i := i + (pLen - j) + 1;
+            
             j := pLen;
         END; (* IF *)
      END; (* WHILE *)

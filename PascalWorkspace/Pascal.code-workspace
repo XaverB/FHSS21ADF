@@ -11,6 +11,12 @@
 		},
 		{
 			"path": "..\\UE2"
+		},
+		{
+			"path": "..\\1_Hashing"
+		},
+		{
+			"path": "..\\2_PatternMatching"
 		}
 	],
 	"extensions": {
