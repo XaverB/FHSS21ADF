@@ -1,0 +1,166 @@
+{
+  "Header": {
+    "prefix": "header",
+    "body": [
+      "(* ${1:Title}:                                                 ${2:Author}, $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE *)",
+      "(* ------                                                                    *)",
+      "(* ${3:Description}                                                               *)",
+      "(* ========================================================================= *)",
+      "",
+      "$0"
+    ]
+  },
+  "PROGRAM": {
+    "prefix": "PROGRAM",
+    "body": [
+      "PROGRAM ${1:ProgramName};",
+      "BEGIN (* ${1:ProgramName} *)",
+      "\t$0",
+      "END. (* ${1:ProgramName} *)"
+    ]
+  },
+  "USES": {
+    "prefix": "USES",
+    "body": [
+      "USES",
+      "\t${1:UnitName};",
+			"$0"
+    ]
+  },
+  "VAR": {
+    "prefix": "VAR",
+    "body": [
+      "VAR",
+      "\t${1:variableName}: ${2:DataType};$0"
+    ]
+  },
+  "variable declaration": {
+    "prefix": "variable",
+    "body": [
+      "${1:variableName}: ${2:DataType};$0"
+    ]
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "${1:EnumName} = (${2:value}, $0);"
+    ]
+  },
+  "ARRAY": {
+    "prefix": "ARRAY",
+    "body": [
+      "ARRAY [${1:minIndex}..${2:maxIndex}] OF ${3:DataType};$0"
+    ]
+  },
+  "RECORD": {
+    "prefix": "RECORD",
+    "body": [
+      "${1:RecordName} = RECORD",
+      "\t${2:elementName}: ${3:DataType};$0",
+      "END; (* ${1:RecordName} *)"
+    ]
+  },
+  "IF": {
+    "prefix": "IF",
+    "body": [
+      "IF (${1:condition}) THEN BEGIN",
+      "\t$0",
+      "END; (* IF *)"
+    ]
+  },
+  "IF ELSE": {
+    "prefix": "IFELSE",
+    "body": [
+      "IF (${1:condition}) THEN BEGIN",
+      "\t$0",
+      "END ELSE BEGIN",
+      "\t",
+      "END; (* IF *)"
+    ]
+  },
+  "ELSE": {
+    "prefix": "ELSE",
+    "body": [
+      "END ELSE BEGIN",
+      "\t$0"
+    ]
+  },
+  "ELSE IF": {
+    "prefix": "ELSEIF",
+    "body": [
+      "END ELSE IF (${1:condition}) THEN BEGIN",
+      "\t$0"
+    ]
+  },
+  "CASE": {
+    "prefix": "CASE",
+    "body": [
+      "CASE ${1:variable} OF",
+      "\t${2:value}: ${3:code};",
+      "\t$0",
+      "ELSE",
+      "\t",
+      "END; (* CASE *)"
+    ]
+  },
+  "WHILE": {
+    "prefix": "WHILE",
+    "body": [
+      "WHILE (${1:condition}) DO BEGIN",
+      "\t$0",
+      "END; (* WHILE *)"
+    ]
+  },
+  "REPEAT": {
+    "prefix": "REPEAT",
+    "body": [
+      "REPEAT",
+      "\t$0",
+      "UNTIL (${1:condition}); (* REPEAT *)"
+    ]
+  },
+  "FOR": {
+    "prefix": "for",
+    "body": [
+      "FOR ${1:i} := ${2:min} TO ${3:max} DO BEGIN",
+      "\t$0",
+      "END; (* FOR *)"
+    ]
+  },
+  "PROCEDURE": {
+    "prefix": "PROCEDURE",
+    "body": [
+      "PROCEDURE ${1:ProcedureName}(${2:parameters});",
+      "BEGIN (* ${1:ProcedureName} *)",
+      "\t$0",
+      "END; (* ${1:ProcedureName} *)"
+    ]
+  },
+  "FUNCTION": {
+    "prefix": "FUNCTION",
+    "body": [
+      "FUNCTION ${1:FunctionName}(${2:parameters}): ${3:DataType};",
+      "BEGIN (* ${1:FunctionName} *)",
+      "\t$0",
+      "END; (* ${1:FunctionName} *)"
+    ]
+  },
+  "UNIT": {
+    "prefix": "UNIT",
+    "body": [
+      "UNIT ${1:UnitName};",
+      "",
+      "INTERFACE",
+      "",
+      "\t$0",
+      "",
+      "IMPLEMENTATION",
+      "",
+      "\t",
+      "",
+      "BEGIN (* ${1:UnitName} *)",
+      "\t",
+      "END. (* ${1:UnitName} *)"
+    ]
+  }
+}

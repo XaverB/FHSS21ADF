@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\KPM"
+		},
+		{
+			"path": "..\\UE1_Hashing"
+		},
+		{
+			"path": "..\\UE2"
+		}
+	],
+	"extensions": {
+		"recommendations": [
+			"alefragnani.pascal-formatter",
+			"alefragnani.pascal"
+		]
+	}
+}
