@@ -5,32 +5,54 @@
 PROGRAM WordCounter;
 
   USES
-    WinCrt, Timer, WordReader, WordCounterChaining;
+    WinCrt, Timer, WordReader, WordCounterAdressing;
 
   VAR
     w: Word;
     n: LONGINT;
+    canInsert: BOOLEAN;
 
-BEGIN (*WordCounter*)
+
+PROCEDURE RunTest(filename: STRING);
+BEGIN
+  canInsert := TRUE;
+  WriteLn('-------------------');
+  WriteLn('Testing file:', filename);
+  WriteLn('-------------------');
   WriteLn('WordCounter:');
-  OpenFile('Testfile_MultiOccurency.txt', toLower);
+  OpenFile(filename, toLower);
   StartTimer;
+
   n := 0;
   ReadWord(w);
-  WHILE w <> '' DO BEGIN
+  WHILE (w <> '') and (canInsert) DO BEGIN
     n := n + 1;
-    (*insert word in data structure and count its occurence*)
-    Add(w);
+    canInsert := Add(w);
     ReadWord(w);
   END; (*WHILE*)
-  StopTimer;
   CloseFile;
-  WriteLn('number of words: ', n);
-  WriteLn('elapsed time:    ', ElapsedTime);
-  (*search in d
-  ta structure for word with max. occurrence*)
-  WriteLn('word count: ', GetWordCount);
-  WriteLn('word count multiple occurencies: ', GetMultiOccurencyCount);
-  WriteLn('word with highest count: ', GetHighestFrequencyWord);
 
+  WriteLn('number of words read: ', n);
+  WriteLn('word count in hashtable: ', GetWordCount);
+  WriteLn('word with highest count: ', GetHighestFrequencyWord);
+  WriteLn('word count multiple occurencies: ', GetMultiOccurencyCount);
+  StopTimer;
+  WriteLn('elapsed time:    ', ElapsedTime);
+END;
+
+BEGIN (*WordCounter*)
+  RunTest('Kafka.txt');
+  Clear;
+  
+  RunTest('Testfile_MultiOccurency.txt');
+  Clear;
+
+  RunTest('Testfile_SingleWordsOnly.txt');
+  Clear;
+
+  RunTest('Testfile_OneDuplicatedWord.txt');
+  Clear;
+
+  RunTest('Testfile_empty.txt');
+  Clear;
 END. (*WordCounter*)
