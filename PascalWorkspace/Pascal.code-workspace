@@ -17,6 +17,12 @@
 		},
 		{
 			"path": "..\\2_PatternMatching"
+		},
+		{
+			"path": "..\\WordCounter"
+		},
+		{
+			"path": "..\\FindLongestMatch"
 		}
 	],
 	"extensions": {
