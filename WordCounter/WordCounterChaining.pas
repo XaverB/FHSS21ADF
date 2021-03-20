@@ -43,19 +43,18 @@ USES
     VAR
         hashTable: ARRAY[Hash] OF WordRecordPtr;
 
+
     FUNCTION ComputeHash(name: STRING) : Hash;
     VAR
-        currentIndex: INTEGER;
-        h: INTEGER;
+        currentIndex: LONGINT;
+        h: LONGINT;
     BEGIN
         h := 0;
-
-        IF Length(name) = 0 THEN BEGIN
-            ComputeHash := Low(Hash);
-            WriteLn('Computed LOW');
-        END ELSE
+        IF Length(name) = 0 THEN
+            ComputeHash := Low(Hash)
+        ELSE
             FOR currentIndex := 1 TO Length(name) DO
-                h := (h * asciiCount + Ord(name[currentIndex])) MOD ((High(Hash) - Low(Hash) + 1) + Low(Hash)); 
+                h := (h * asciiCount + Ord(name[currentIndex])) MOD (Ord((High(Hash)) - Ord(Low(Hash)) + 1) + Ord(Low(Hash))); 
         ComputeHash := h;
     END;
     

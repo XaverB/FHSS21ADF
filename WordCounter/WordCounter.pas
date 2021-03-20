@@ -5,7 +5,7 @@
 PROGRAM WordCounter;
 
   USES
-    WinCrt, Timer, WordReader, WordCounterAdressing;
+    WinCrt, Timer, WordReader, WordCounterChaining;
 
   VAR
     w: Word;
