@@ -1,0 +1,2 @@
+IO.exe > test.txt <input.txt 2>log.txt
+IO.exe <test.txt >test.txt 2>NUL
