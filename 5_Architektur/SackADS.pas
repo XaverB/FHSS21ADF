@@ -50,12 +50,15 @@ END.
 
 FUNCTION IsEmpty: BOOLEAN;
 BEGIN 
+    IsEmpty := top = 0;
 END.
 
 PROCEDURE Clear;
 BEGIN 
+    top := 0;
 END.
 
 BEGIN
+    top := 0;
     (* INIT HERE *)
 END.
