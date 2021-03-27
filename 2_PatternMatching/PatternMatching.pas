@@ -186,15 +186,15 @@ BEGIN
     hs := 0;
     hp := 0;
     FOR j := 1 TO pLen DO BEGIN (* horner schema hash *)
-        hs := hs * D + Ord(s[j]) MOD Q;
-        hp := hp * D + Ord(p[j]) MOD Q;
+        hs := (hs * D + Ord(s[j])) MOD Q;
+        hp := (hp * D + Ord(p[j])) MOD Q;
     END;
 
     i := 1;
     j := 1;
     iMax := sLen - pLen + 1;
 
-    WHILE (i <= iMax) and (j <= pLen> DO) BEGIN
+    WHILE (i <= iMax) and (j <= pLen) DO BEGIN
         IF hs = hp THEN BEGIN
             (* >possible< match *)
             j := 1; // laufvariable für pattern
@@ -205,9 +205,14 @@ BEGIN
             END;
         END;
         hs := (hs + D * Q - Ord(s[i]) * dm) MOD Q; // alten wert rausnehmen und was dazu addieren, damit wir nicht negativ werden (D * Q) und daher können wir wieder MOD rechnen (weil ja *Q)
-        hs := hs * D + Ord(s[i + pLen]) MOD Q;  // neuen wert hinzufügen
+        hs := (hs * D + Ord(s[i + pLen])) MOD Q;  // neuen wert hinzufügen
         Inc(i);
     END;
+    
+    IF (i > iMax) AND (j <= pLen) THEN
+        pos := 0
+    ELSE
+        pos := i - 1; (* -1 wegen der possible match while *)
 END;
 
 
@@ -272,7 +277,7 @@ BEGIN
     BooyerMoore('abbca', 'abc', pos); IF NOT (pos = 0) THEN WriteLn('13 FAILED') ELSE WriteLn('13 OK');
 
     WriteLn('Testing Rabin-Karp..');
-    RabinKarp('', '', pos); IF NOT (pos = 1) THEN WriteLn('1 FAILED') ELSE WriteLn('1 OK');
+    RabinKarp('', '', pos); IF NOT (pos = 0) THEN WriteLn('1 FAILED') ELSE WriteLn('1 OK');
     RabinKarp('asdf', '', pos); IF NOT (pos = 1) THEN WriteLn('2 FAILED') ELSE WriteLn('2 OK');
     RabinKarp('', 'asdf', pos); IF NOT (pos = 0) THEN WriteLn('3 FAILED') ELSE WriteLn('3 OK');
     RabinKarp('asdf', 'asdf', pos); IF NOT (pos = 1) THEN WriteLn('4 FAILED') ELSE WriteLn('4 OK');

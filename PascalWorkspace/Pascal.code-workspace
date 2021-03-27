@@ -23,6 +23,18 @@
 		},
 		{
 			"path": "..\\FindLongestMatch"
+		},
+		{
+			"path": "..\\3_Filehandle"
+		},
+		{
+			"path": "..\\ExtendedPatternMatching"
+		},
+		{
+			"path": "..\\4_CMDArgs"
+		},
+		{
+			"path": "..\\5_Architektur"
 		}
 	],
 	"extensions": {

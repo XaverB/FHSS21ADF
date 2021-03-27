@@ -1,0 +1,2 @@
+fpc ExtendedPatternMatching.pas
+ExtendedPatternMatching.exe
