@@ -35,6 +35,12 @@
 		},
 		{
 			"path": "..\\5_Architektur"
+		},
+		{
+			"path": "..\\StoryGen"
+		},
+		{
+			"path": "..\\Vector"
 		}
 	],
 	"extensions": {

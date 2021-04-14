@@ -28,7 +28,7 @@ PROCEDURE Clear;
 IMPLEMENTATION
 
 CONST
-    MaxSize = 100;
+    MaxSize = 10;
 
 VAR
     data: ARRAY[0..MaxSize] OF INTEGER;
@@ -37,26 +37,40 @@ VAR
 
 PROCEDURE Push(value: INTEGER; VAR ok: BOOLEAN);
 BEGIN 
-END.
+    ok := top < MaxSize;
+    IF ok THEN
+    BEGIN
+        Inc(top);
+        data[top] := value;
+    END;
+END;
 
 PROCEDURE Pop(VAR value: INTEGER; VAR ok: BOOLEAN);
 BEGIN 
-END.
+    ok := NOT IsEmpty;
+    IF ok THEN BEGIN
+        value := data[top];
+        Dec(top);
+    END;
+END;
 
 
 PROCEDURE Peak(VAR value: INTEGER; VAR ok: BOOLEAN);
 BEGIN 
-END.
+    ok := NOT IsEmpty;
+    IF ok THEN 
+        value := data[top];
+END;
 
 FUNCTION IsEmpty: BOOLEAN;
 BEGIN 
     IsEmpty := top = 0;
-END.
+END;
 
 PROCEDURE Clear;
 BEGIN 
     top := 0;
-END.
+END;
 
 BEGIN
     top := 0;

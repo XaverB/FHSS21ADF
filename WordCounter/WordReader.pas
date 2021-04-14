@@ -23,8 +23,8 @@ IMPLEMENTATION
     WinCrt;
     
   CONST
-    characters = ['a' .. 'z', 'ä', 'ö', 'ü', 'ß',
-                  'A' .. 'Z', 'Ä', 'Ö', 'Ü'];
+    characters = ['a' .. 'z', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½',
+                  'A' .. 'Z', 'ï¿½', 'ï¿½', 'ï¿½'];
     EF = CHR(0);        (*end of file character*)
 
   VAR
@@ -43,9 +43,9 @@ IMPLEMENTATION
     FOR i := 1 TO Length(w) DO BEGIN
       CASE w[i] OF
         'A'..'Z': w[i] := CHR(ORD(w[i]) + 32) ;
-        'Ä':      w[i] := 'ä';
-        'Ö':      w[i] := 'ö';
-        'Ü':      w[i] := 'ü';
+        'ï¿½':      w[i] := 'ï¿½';
+        'ï¿½':      w[i] := 'ï¿½';
+        'ï¿½':      w[i] := 'ï¿½';
       END; (*CASE*)
     END; (*FOR*)
   END; (*ConvertToLower*)
@@ -57,9 +57,9 @@ IMPLEMENTATION
     FOR i := 1 TO Length(w) DO BEGIN
       CASE w[i] OF
         'a'..'z': w[i] := UpCase(w[i]);
-        'ä':      w[i] := 'Ä';
-        'ö':      w[i] := 'Ö';
-        'ü':      w[i] := 'Ü';
+        'ï¿½':      w[i] := 'ï¿½';
+        'ï¿½':      w[i] := 'ï¿½';
+        'ï¿½':      w[i] := 'ï¿½';
       END; (*CASE*)
     END; (*FOR*)
   END; (*ConvertToUpper*)
