@@ -6,14 +6,20 @@ USES
 VAR
     value: INTEGER;
 
+PROCEDURE AssertEquals(expected: INTEGER, actual INTEGER)
+BEGIN
+    IF expected <> actual THEN
+        Writeln('Assert failed! Expected: (', IntToStr(expected), '), Actual: (', IntToStr(actual),')');
+END
+
 BEGIN
     Writeln('Starting testrun VectorADS');
     (* no element at 1 available *)
-    // GetElementAt(1, value);
-    // Writeln('Element at 1:', value);
+     GetElementAt(1, value);
+     Writeln('Element at 1:', value);
     (* element 4 is beyond the defaultSize *)
-    // GetElementAt(4, value);
-    // Writeln('Element at 4:', value);
+     GetElementAt(4, value);
+    Writeln('Element at 4:', value);
 
     Writeln('Capacity: ', Capacity);
     Writeln('Size: ', Size);
