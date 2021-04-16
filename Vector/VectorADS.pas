@@ -63,19 +63,13 @@ END;
 PROCEDURE IncreaseSize(newSize: INTEGER);
 VAR
     newArray: IntArrayPtr;
-BEGIN
-    Writeln('increasing size.');
+BEGIN;
     newArray := NIL;
-    Writeln('1.');
     InitializeArray(newArray, newSize);
-    Writeln('2.');
     Copy(arrayPointer, newArray, 1, currentArraySize);
-    Writeln('3.');
     FreeMem(arrayPointer, currentArraySize * SizeOf(INTEGER));
-    Writeln('4.');
     arrayPointer := newArray;
     currentArraySize := newSize;
-    Writeln('size increased');
 END;
 
 (* fügt den Wert val „hinten“ an, wobei zuvor ev. die Größe des Behälters angepasst wird. *)
@@ -85,11 +79,9 @@ BEGIN
         IncreaseSize(currentArraySize + 1);
     
     Inc(currentElementCount);
-    Writeln('before add');
     (*$R-*)
     arrayPointer^[currentElementCount] := val;
     (*$R+*)
-    Writeln('after add');
 END;
 
 (* setzt an der Stelle pos den Wert val.*)
@@ -124,8 +116,8 @@ BEGIN
             (*$R+*)
             Inc(i);
         END;
+        Dec(currentElementCount);
     END;
-    Inc(currentElementCount);
 END;
 
 (* liefert die aktuelle Anzahl der im Behälter gespeicherten Werte (zu Beginn 0). *)
