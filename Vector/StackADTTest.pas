@@ -2,12 +2,6 @@ PROGRAM StackADTTest;
 
 USES StackADT;
 
-PROCEDURE AssertEquals(expected: INTEGER; actual: INTEGER);
-BEGIN
-    IF expected <> actual THEN
-        Writeln('Assert failed! Expected: (', IntToStr(expected), '), Actual: (', IntToStr(actual),')');
-END;
-
 VAR
     s, s2: Stack;
     ok: BOOLEAN;
