@@ -2,6 +2,12 @@ PROGRAM StackADTTest;
 
 USES StackADT;
 
+PROCEDURE AssertEquals(expected: INTEGER; actual: INTEGER);
+BEGIN
+    IF expected <> actual THEN
+        Writeln('Assert failed! Expected: (', IntToStr(expected), '), Actual: (', IntToStr(actual),')');
+END;
+
 VAR
     s, s2: Stack;
     ok: BOOLEAN;
@@ -9,22 +15,32 @@ VAR
 BEGIN
     InitStack(s);
 
-    Push(s, 3, ok); WriteLn(ok);
-    Push(s, 5, ok); WriteLn(ok);
-    Push(s, 8, ok); WriteLn(ok);
+    (* push some values *)
+    Push(s, 3, ok);
+    Push(s, 5, ok);
+    Push(s, 8, ok);
 
     InitStack(s2);
 
     WHILE NOT IsEmpty(s) DO BEGIN
-        Pop(s, value, ok); Writeln(ok, ' ', value);
+        (* the pushed values must be printed in reverse order *)
+        Pop(s, value, ok);  Writeln(ok, ' ', value);
+        (* push the values into the second stack *)
         Push(s2, value, ok);
     END;
 
-    Pop(s, value, ok); Writeln(ok, ' ', value);
-    Push(s, 1, ok); Writeln(IsEmpty(s));
+    (* stack s is empty *)
+    Pop(s, value, ok); 
+    (* must be false, because the stack is empty *)
+    Writeln(ok, ' ', value);
+
+    (* push a value --> IsEmpty must be false *)
+    Push(s, 1, ok); 
+    Writeln(IsEmpty(s));
 
     DisposeStack(s);
 
+    (* now the pushed values must be printed in reverse again *)
     WHILE NOT isEmpty(s2) DO BEGIN
         Pop(s2, value, ok); Writeln(value);
     END;
