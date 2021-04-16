@@ -125,7 +125,6 @@ BEGIN
     IF state^.currentElementCount + 1 > state^.currentSize THEN BEGIN
         IncreaseSize(v, state^.currentSize + 1);
     END;
-    
 
     Inc(state^.currentElementCount);
     (*$R-*)
