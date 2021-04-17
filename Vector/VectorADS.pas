@@ -5,14 +5,20 @@ INTERFACE
 (* fügt den Wert val „hinten“ an, wobei zuvor ev. die Größe des Behälters angepasst wird. *)
 PROCEDURE Add(val: INTEGER);
 
-(* setzt an der Stelle pos den Wert val.*)
+(* setzt an der Stelle pos den Wert val.
+* Der Aufrufer hat dafür zu sorgen, dass die pos nicht ausserhalb der Feldgröße liegt.
+*)
 PROCEDURE SetElementAt(pos: INTEGER; val: INTEGER);
 
-(* liefert den Wert val an der Stelle pos. *)
+(* liefert den Wert val an der Stelle pos.
+* Der Aufrufer hat dafür zu sorgen, dass die pos nicht ausserhalb der Feldgröße liegt.
+*)
 PROCEDURE GetElementAt(pos: INTEGER; VAR val: INTEGER);
 
 (* entfernt den Wert an der Stelle pos, wobei die restlichen Elemente um eine Position nach 
-„vorne“ verschoben werden, die Kapazität des Behälters aber unverändert bleibt. *)
+„vorne“ verschoben werden, die Kapazität des Behälters aber unverändert bleibt. 
+* Der Aufrufer hat dafür zu sorgen, dass die pos nicht ausserhalb der Feldgröße liegt.
+*)
 PROCEDURE RemoveElementAt(pos: INTEGER);
 
 (* liefert die aktuelle Anzahl der im Behälter gespeicherten Werte (zu Beginn 0). *)
@@ -84,7 +90,9 @@ BEGIN
     (*$R+*)
 END;
 
-(* setzt an der Stelle pos den Wert val.*)
+(* setzt an der Stelle pos den Wert val.
+* Der Aufrufer hat dafür zu sorgen, dass die pos nicht ausserhalb der Feldgröße liegt.
+*)
 PROCEDURE SetElementAt(pos: INTEGER; val: INTEGER);
 BEGIN
     (*$R-*)
@@ -92,7 +100,9 @@ BEGIN
     (*$R+*)
 END;
 
-(* liefert den Wert val an der Stelle pos. *)
+(* liefert den Wert val an der Stelle pos.
+* Der Aufrufer hat dafür zu sorgen, dass die pos nicht ausserhalb der Feldgröße liegt.
+*)
 PROCEDURE GetElementAt(pos: INTEGER; VAR val: INTEGER);
 BEGIN
     (*$R-*)
@@ -101,7 +111,9 @@ BEGIN
 END;
 
 (* entfernt den Wert an der Stelle pos, wobei die restlichen Elemente um eine Position nach 
-„vorne“ verschoben werden, die Kapazität des Behälters aber unverändert bleibt. *)
+„vorne“ verschoben werden, die Kapazität des Behälters aber unverändert bleibt. 
+* Der Aufrufer hat dafür zu sorgen, dass die pos nicht ausserhalb der Feldgröße liegt.
+*)
 PROCEDURE RemoveElementAt(pos: INTEGER);
 VAR
     i: INTEGER;

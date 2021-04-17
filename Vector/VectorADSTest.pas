@@ -26,12 +26,14 @@ BEGIN
     AssertEquals(3, Capacity);
     AssertEquals(0, Size);
     
+    (* Add some values and check capacity and size afterwards *)
     Add(1);
     Add(2);
     Add(3);
     AssertEquals(3, Capacity);
     AssertEquals(3, Size);
     
+    (* get the inserted values and check *)
     GetElementAt(1, value);
     AssertEquals(1, value);
     
@@ -50,14 +52,17 @@ BEGIN
     GetElementAt(5, value);
     AssertEquals(5, value);
 
+    (* check new size after two inserts beyond the defaultSize *)
     AssertEquals(5, capacity);
     AssertEquals(5, size);
 
+    (* overwrite an existing value and check *)
     SetElementAt(2, -2);
     GetElementAt(2, value);
     AssertEquals(-2, value);
 
     AssertEquals(5, Size);
+    
     (* this will shift all elements after the remove pos closer to 0 and reduces the size by 1*)
     RemoveElementAt(2);
     GetElementAt(2, value);
