@@ -1,0 +1,41 @@
+Zähle verschiedene Zahlen
+
+###
+TYPE
+    Node = ^NodeRec
+    Node = RECORD
+        value: NUMBER;
+        next: Node;
+    END;
+    List = Node;
+###     
+
+
+Expr l:List =              
+Term  l:List                    
+{ ( "+" Term l:List                
+) | ( "-" Term l:List              
+) } .                   
+Term l:List =                   
+Fact l:List                    
+{ ( "*" Fact l:List            
+) | ( "/" Fact l:List          
+) } .                    
+Fact l:List 
+
+###
+VAR n: Node: 
+###
+
+=                   
+number               
+
+###
+New(n);
+n^.value := CurrentNumberValue; // von scanner
+nr^.next := l;
+l := n;
+###
+
+| ( "(" Expr l:List          
+")" ) .                  
