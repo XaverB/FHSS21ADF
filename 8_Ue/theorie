@@ -1,0 +1,14 @@
+Nur Addition
+
+SCANNER
+plus -> "+"
+number -> "0" | "1" | "2" | ... |"9" {"0" | "1" | ... |"9" }
+
+
+
+
+
+PARSER
+
+Expr = number { "+" number } .
+number = digit { digit } .

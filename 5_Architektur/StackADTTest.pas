@@ -1,6 +1,6 @@
 PROGRAM StackADTTest;
 
-USES StackADTa;
+USES StackADT;
 
 VAR
     s, s2: Stack;
@@ -29,9 +29,6 @@ BEGIN
     Clear(s); Writeln(IsEmpty(s));
 
     DisposeStack(s);
-
-
-
 
     WHILE NOT isEmpty(s2) DO BEGIN
         Pop(s2, value, ok); Writeln(value);

@@ -41,6 +41,30 @@
 		},
 		{
 			"path": "..\\Vector"
+		},
+		{
+			"path": "..\\6_Gramatic"
+		},
+		{
+			"path": "..\\7_ATG"
+		},
+		{
+			"path": "..\\MPI"
+		},
+		{
+			"path": "..\\AbstractSyntaxTree"
+		},
+		{
+			"path": "..\\8_Ue"
+		},
+		{
+			"path": "..\\MPC"
+		},
+		{
+			"path": "..\\MPVM"
+		},
+		{
+			"path": "..\\9_ue_oop"
 		}
 	],
 	"extensions": {

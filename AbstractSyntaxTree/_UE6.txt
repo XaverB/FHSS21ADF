@@ -1,0 +1,175 @@
+213.4+45.678 
+213.4 + 45.678 
+213.4 +45.678 
+
+213.4+45    .678  <- falsch
+
+213.4
++
+45.678
+
+
+
+
+3 + 4 * ( 108 - 104)/ 2- 1
+
+Lexikalische Zerlegung:
+3
++
+4
+*
+(
+108
+-
+)
+/
+2
+-
+1
+
+--> 10
+
+=== Lexikon ===
+--- einfache TerminalSymbole ("Wort") --- // "" -> sieht genau so aus
+plus:       "+" 
+minus:      "-"
+mult:       "*"
+div:        "/"
+leftPar:   "("
+rightPar    ")"
+
+--- "komplexe" Terminalsymbole" = Terminalklassen ---  // benötigen Bildungsregel
+number --> beginnt mit "0" bis "9", danach beliebig oft "0" bis "9", Beispiel:"13040434", "312", "1", "0"
+
+
+
+Lexialisch Korrekt:
+3 + 4
+number plus number
+
+123
+number
+
+14 15 16
+number number number
+
+1234     +   * 14/ )))
+number plus mult number div rightPar rightPar rightPar
+
+
+Lexikalisch nicht korret:
+
+a : c
+??? ??? ???
+
+#
+???
+
+
+
+
+
+
+
+
+--------------------------------------
+EBNF für Grammatik:
+
+
+=== Lexikon ===
+--- einfache TerminalSymbole ("Wort") --- // "" -> sieht genau so aus
+plus:       "+" 
+minus:      "-"
+mult:       "*"
+div:        "/"
+leftPar:   "("
+rightPar    ")"
+
+--- "komplexe" Terminalsymbole" = Terminalklassen ---  // benötigen Bildungsregel
+number --> beginnt mit "0" bis "9", danach beliebig oft "0" bis "9", Beispiel:"13040434", "312", "1", "0"
+
+3 + 15
+number plus number
+
+number (plus | minus | mult | div) number
+3 + 4
+3 * 5
+14 - 17
+....
+
+
+
+
+
+
+number { (plus | minus | mult | div) number }
+3 + 4 - 5 + 12
+3
+
+
+Expr = number { (plus | minus | mult | div) number } .
+
+Expr = number { Operand number } .
+Operand = plus | minus | mult | div .
+
+
+Expr = Term { (pluis |minus) Term } .
+Term = Fac { (mult | div ) Fact } .
+Fact = number .
+
+2*3 + 4*5
+number mult number plus number mult number
+|   -   |   |       |   |       |   |
+Fact    |   Fact    |   Fact    |   Fac
+|   -   |   |       |   |   -   |   |
+Term                |   Term    
+|  -    -   -   -   |   |
+Expr 
+
+
+2 + 3 * (4 + 5 * (3 + 1))
+
+
+Expr = Term { (pluis | minus) Term } .
+Term = Fac { (mult | div ) Fact } .
+Fact = number  | ( leftPar Expr rightPar ) .
+
+
+
+
+
+
+
+Expr = number .
+
+VAR
+    success: BOOLEAN;
+
+PROCEDURE A;
+BEGIN
+    IF CurrentSymbol <> numberSym THEN BEGIN
+        // this is for sure not a valid sentence
+        success := FALSE;
+        // we can stop parsing
+        Exit;
+    END;
+    GetNExtSymbol;
+END;
+
+
+PROCEDURE Expr;
+BEGIN
+    A;
+    IF NOT success THEN Exit;
+    GetNExtSymbol;
+    ...
+END.
+
+
+
+FUNCTION Parse ...
+BEGIN
+    success := TRUE;
+    Expr;
+    Parse := success;
+END;
