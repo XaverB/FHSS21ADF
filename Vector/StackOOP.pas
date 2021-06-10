@@ -7,8 +7,6 @@ CONST
 
 TYPE
     Stack = OBJECT
-        data: ARRAY[1..MaxSize] OF INTEGER;
-        top: 0..MaxSize;
         
         // Initializes a Stack
         // IN Stack
@@ -39,6 +37,11 @@ TYPE
         FUNCTION IsEmpty: BOOLEAN;
 
         PROCEDURE Clear;
+
+
+        PRIVATE 
+        data: ARRAY[1..MaxSize] OF INTEGER;
+        top: 0..MaxSize;
     END;
 
 IMPLEMENTATION
