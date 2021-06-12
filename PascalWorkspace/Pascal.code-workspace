@@ -68,6 +68,12 @@
 		},
 		{
 			"path": "..\\CoronaContactTracing"
+		},
+		{
+			"path": "..\\VectorOOP"
+		},
+		{
+			"path": "..\\UE10"
 		}
 	],
 	"extensions": {
