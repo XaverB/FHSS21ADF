@@ -56,7 +56,7 @@ BEGIN
     AssertEquals(-2, value1);
 
     // check the shift
-    v1.GetElementAt(4, value1, ok);
+    v1.GetElementAt(3, value1, ok);
     IF ok = FALSE THEN
         Writeln('Something went wrong');
     AssertEquals(3, value1);
