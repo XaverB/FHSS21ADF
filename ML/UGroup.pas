@@ -2,7 +2,7 @@ UNIT UGroup;
 
 INTERFACE
 
-USES UShape;
+USES UShape, MLObj, MLColl, MLVect;
 
 TYPE
     Group = ^GroupObj;
@@ -14,8 +14,8 @@ TYPE
         PROCEDURE MoveBy(dx, dy: INTEGER); VIRTUAL;
 
         PROCEDURE AddShape(s: Shape; VAR ok: BOOLEAN); VIRTUAL;
-        PRIVATE
-            _shapes: POINTER; // ShapeNodePointer
+    PRIVATE
+        _shapes: MLVector;
     END;
 
 IMPLEMENTATION
@@ -30,59 +30,59 @@ TYPE
 CONSTRUCTOR GroupObj.Init;
 begin
     INHERITED Init; // AAAAAAAAAAALWAYS
-    SELF._shapes := NIL;
+    Register('Group', 'Shape'); // ## required meta information for MiniLib
+    New(SELF._shapes, Init);
 end;
 
 destructor GroupObj.Done;
-VAR 
-    n, next: ShapeNodePointer;
+VAR
+    it: MLIterator;
+    o: MLObject;
 begin
-    n := SELF._shapes;
-    WHILE n <> NIL DO BEGIN
-        next := n^.next;
-        Dipose(n^.s, Done); // (just) this is added for STRONG AGGREGATION --> container now also kills the object (shapes)
-        Dispose(n);
-        n := next;
+    // for STORNG aggregation: also destroy the owned objects
+    it := SELF._shapes^.NewIterator;
+    o := it^.next;
+    WHILE o <> NIL DO BEGIN
+        Dispose(o, DONE);
+        o := it^.next;
     END;
+
+
+    Dispose(SELF._shapes, DONE);
     INHERITED Done; // ALWAAAYS
 end;
 
 PROCEDURE GroupObj.Draw; 
-VAR 
-    n: ShapeNodePointer;
+VAR
+    it: MLIterator;
+    o: MLObject;
 begin
-    Writeln('BEGIN OF GROUP');
-    n := SELF._shapes;
-    WHILE n <> NIL DO BEGIN
-        n^.s^.Draw;
-        n := n^.next;
+    Writeln('BEGIN GROUP');
+    it := SELF._shapes^.NewIterator;
+    o := it^.next;
+    WHILE o <> NIL DO BEGIN
+        Shape(o)^.Draw;
+        o := it^.next;
     END;
-    Writeln('END OF GROUP');
+    Writeln('END GROUP');
 end;
 
 PROCEDURE GroupObj.MoveBy(dx, dy: INTEGER);
-VAR 
-    n: ShapeNodePointer;
+VAR
+    it: MLIterator;
+    o: MLObject;
 begin
-    n := SELF._shapes;
-    WHILE n <> NIL DO BEGIN
-        n^.s^.MoveBy(dx, dy);
-        n := n^.next;
+    it := SELF._shapes^.NewIterator;
+    o := it^.next;
+    WHILE o <> NIL DO BEGIN
+        Shape(o)^.MoveBy(dx, dy);
+        o := it^.next;
     END;
-
 end;
 
 PROCEDURE GroupObj.AddShape(s: SHape; VAR ok: BOOLEAN);
-VAR
-    n: ShapeNodePointer;
 BEGIN
-    New(n);
-    ok := n <> NIL;
-    IF ok THEN BEGIN
-        n^.s := s;
-        n^.next := SELF._shapes;
-        SELF._shapes := n;
-    END;
+    SELF._shapes^.Add(s);
 END;
 
 BEGIN

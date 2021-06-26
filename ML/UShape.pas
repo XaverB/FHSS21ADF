@@ -2,11 +2,13 @@ UNIT UShape;
 
 INTERFACE
 
+USES
+    MLObj;
+
 TYPE
     Shape = ^ShapeObj;
-    ShapeObj = OBJECT // ABSTRACT 
+    ShapeObj = OBJECT(MLObjectObj) // ABSTRACT // ### added base class MLObject
             CONSTRUCTOR Init;
-            destructor DONE; VIRTUAL;
 
             PROCEDURE Draw; VIRTUAL; // ABSTRACT
             PROCEDURE MoveBy(dx, dy: INTEGER); VIRTUAL; // ABSTRACT
@@ -18,10 +20,8 @@ IMPLEMENTATION
 
 CONSTRUCTOR ShapeObj.Init;
 begin
-end;
-
-destructor ShapeObj.DONE;
-begin
+    INHERITED Init;
+    Register('Shape', 'MLObject'); // ## required meta information for MiniLib
 end;
 
 PROCEDURE ShapeObj.Draw; // ABSTRACT

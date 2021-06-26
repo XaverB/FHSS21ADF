@@ -35,6 +35,8 @@ BEGIN
     g^.MoveBy(10, 10);
     g^.Draw();
 
+    Writeln(c^.Class, ' ', c^.baseClass, ' ', c^.IsA('Rectangle'), ' ', c^.IsA('MLObject')); // ## now we can also get information about
+
     Dispose(g, Done); // all owned objets die 
 
 

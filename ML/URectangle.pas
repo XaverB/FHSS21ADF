@@ -2,7 +2,7 @@ UNIT URectangle;
 
 INTERFACE
 
-USES UShape;
+USES UShape, MLObj;
 
 TYPE
     Rectangle = ^RectangleObj;
@@ -23,6 +23,7 @@ IMPLEMENTATION
 CONSTRUCTOR RectangleObj.Init(x, y, width, height: INTEGER);
 begin
     INHERITED Init; // AAAAAAAAAAALWAYS
+    Register('Rectangle', 'Shape'); // ## required meta information for MiniLib
     SELF._x := x;
     SELF._y := y;
     SELF._width := width;

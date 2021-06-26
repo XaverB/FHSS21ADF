@@ -2,7 +2,7 @@ UNIT UCircle;
 
 INTERFACE
 
-USES UShape;
+USES UShape, MLObj;
 
 TYPE
     Circle = ^CircleObj;
@@ -23,6 +23,7 @@ IMPLEMENTATION
 CONSTRUCTOR CircleObj.Init(x, y, radius: INTEGER);
 begin
     INHERITED Init; // AAAAAAAAAAALWAYS
+    Register('Circle', 'Shape'); // ## required meta information for MiniLib
     SELF._x := x;
     SELF._y := y;
     SELF._radius := radius;
@@ -38,7 +39,6 @@ begin
     SELF._x := SELF._x + dx;
     SELF._y := SELF._y + dy;
 end;
-
 
 BEGIN
 END.
