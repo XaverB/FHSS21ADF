@@ -74,6 +74,24 @@
 		},
 		{
 			"path": "..\\UE10"
+		},
+		{
+			"path": "..\\UE11"
+		},
+		{
+			"path": "..\\StringBuilderOOP"
+		},
+		{
+			"path": "..\\Shapes"
+		},
+		{
+			"path": "..\\Components"
+		},
+		{
+			"path": "..\\UE12"
+		},
+		{
+			"path": "..\\ML"
 		}
 	],
 	"extensions": {
