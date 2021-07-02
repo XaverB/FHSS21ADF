@@ -121,7 +121,7 @@ IMPLEMENTATION
 (*--- comparison method that may be overridden ---*)
 
   FUNCTION MLObjectObj.IsEqualTo(o: MLObject): BOOLEAN;
-  BEGIN
+  BEGIN    
     IsEqualTo := @SELF = o; (*identical*)
   END; (*MLObjectObj.IsEqualTo*)
 
